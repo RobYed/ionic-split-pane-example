@@ -1,0 +1,24 @@
+<ion-split-pane>
+    <!--  our side menu  -->
+    <ion-menu [content]="content">
+        <ion-header>
+            <ion-navbar color="primary">
+                <ion-title>
+                    <ion-icon name="pulse"></ion-icon>&nbsp;
+                    Menu
+                </ion-title>
+            </ion-navbar>
+        </ion-header>
+        
+        <ion-content>
+            <list-item 
+                [category]="category"
+                *ngFor="let category of categories | async"
+                (select)="onSelect($event)">
+            </list-item>
+        </ion-content>
+    </ion-menu>
+
+    <!-- the main content -->
+    <ion-nav [root]="root" main #content></ion-nav>
+</ion-split-pane>

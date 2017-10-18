@@ -1,0 +1,20 @@
+<ion-list>
+  <ion-list-header>
+      {{ category.title }}
+  </ion-list-header>
+  <button 
+    ion-item 
+    *ngFor="let entry of entries | async; let first = first"
+    (click)="onSelect(entry.id)"
+    [menuClose]>
+      <ion-icon name="ios-checkmark-circle-outline" item-start *ngIf="!first"></ion-icon>
+      <ion-icon name="play" item-start *ngIf="first"></ion-icon>
+      <h2>Entry {{ entry.modelVersion }}</h2>
+      <p>{{ entry.dateStarted | date:'EEE, MMM d, H:mm' }}</p>
+      <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+  </button>
+  <ion-item *ngIf="(entries | async)?.length === 0">
+    <ion-icon name="ios-close-circle-outline" item-start></ion-icon>
+    <h2>No entries available</h2>
+  </ion-item>
+</ion-list>
